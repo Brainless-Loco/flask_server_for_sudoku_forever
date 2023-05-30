@@ -12,11 +12,13 @@ app = Flask(__name__)
 
 @app.route('/', methods =('GET', 'POST'))
 def handle_request():
+    data = request.get_json()
+    image_url = data.get('image_url')
+    print(image_url)
     grid = solve_sudoku()
-    data_set = {'timestamp': time.time(), 'just_check':grid}
+    data_set = {'timestamp': time.time(), 'just_check':grid,'did':'hahah'}
     json_dump = json.dumps(data_set)
     return json_dump
-
 
 if __name__ == '__main__':
     app.run()
