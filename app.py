@@ -2,23 +2,22 @@ from flask import Flask
 from flask import request
 import json
 import time
-import cv2
-import numpy as np
-# from solver import solve_sudoku
 from solver import solve_sudoku
+import os
+from flask_cors import CORS
 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/', methods =('GET', 'POST'))
 def handle_request():
-    data = request.get_json()
-    image_url = data.get('image_url')
-    print(image_url)
     grid = solve_sudoku()
-    data_set = {'timestamp': time.time(), 'just_check':grid,'did':'hahah'}
+    print(grid)
+    data_set = {'timestamp': time.time(), 'solution':grid}
     json_dump = json.dumps(data_set)
     return json_dump
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')

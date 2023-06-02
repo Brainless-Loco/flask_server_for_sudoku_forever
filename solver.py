@@ -147,14 +147,11 @@ def displayNumbers(img, numbers, color=(0, 255, 0)):
                 cv2.putText(img, str(numbers[(j*9)+i]), (i*W+int(W/2)-int((W/4)), int((j+0.7)*H)), cv2.FONT_HERSHEY_COMPLEX, 2, color, 2, cv2.LINE_AA)
     return img
 
-def do_check():
-    return "Okay"
-
 def solve_sudoku():
 
-    # current_dir = os.path.dirname(os.path.abspath(__file__))
-    # image_path = os.path.join(current_dir, 's2.jpg')
-    image_url = "https://firebasestorage.googleapis.com/v0/b/sudokuforever-b9936.appspot.com/o/image.jpg?alt=media&token=20de4091-18fa-4e60-a8ef-ac1c9209ddbd"
+    firebaseURL = "https://firebasestorage.googleapis.com/v0/b/sudokuforever-b9936.appspot.com/o/"
+
+    image_url = firebaseURL+ "sudoku.jpg?alt=media&token=https://firebasestorage.googleapis.com/v0/b/sudokuforever-b9936.appspot.com/o/sudoku.jpg?alt=media&token=1e41c789-536d-4c81-b172-37d3d2650a4d"
     
     resp = urllib.urlopen(image_url)
     image = np.asarray(bytearray(resp.read()), dtype="uint8")
