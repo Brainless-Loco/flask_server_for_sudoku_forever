@@ -14,7 +14,7 @@ CORS(app)
 @app.route('/', methods =('GET', 'POST'))
 def handle_request():
     grid = solve_sudoku()
-    print(grid)
+    # print(grid)
     data_set = {'timestamp': time.time(), 'solution':grid}
     json_dump = json.dumps(data_set)
     return json_dump
